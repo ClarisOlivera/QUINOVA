@@ -259,13 +259,13 @@
 
     <div class="nivel-item">
       <div class="nivel-img">
-        <img src="../imagenescol/secundaria.jpg" alt="Secundaria">
+        <img src="../imagenescol/secundaria.jpeg" alt="Secundaria">
       </div>
       <div class="nivel-texto">
          En el Nivel Secundario preparamos a estudiantes para desafíos académicos y profesionales.
       </div>
     </div>
-  </div>
+  </div><br><br><br>
 
   <!-- Botón -->
   <div id="cuarto">
