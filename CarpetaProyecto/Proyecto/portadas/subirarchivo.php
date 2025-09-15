@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Curso Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #f5f5f5;
+        }
+        /* Panel izquierdo */
+        .sidebar {
+            width: 250px;
+            background: #fff;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background: #4285f4;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .sidebar h3 {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .sidebar p {
+            font-size: 14px;
+            color: #555;
+        }
+        /* Panel central */
+        .main {
+            flex: 1;
+            padding: 20px;
+            background: #fff;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .main textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 14px;
+            resize: none;
+        }
+        .toolbar {
+            margin-top: 10px;
+        }
+        .toolbar button {
+            padding: 8px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .actions {
+            margin-top: 15px;
+            text-align: right;
+        }
+        .actions button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .cancel {
+            background: #ccc;
+        }
+        .publish {
+            background: #4285f4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Panel Izquierdo -->
+    <div class="sidebar">
+        <h3>Clave del curso</h3>
+        <p>7b6iav7k</p>
+        <h3>Tareas pendientes</h3>
+        <p>No tienes ninguna tarea para esta semana</p>
+    </div>
+
+    <!-- Panel Central -->
+    <div class="main">
+        <textarea placeholder="Escribe un mensaje para el curso"></textarea>
+        <div class="toolbar">
+            <button><b>B</b></button>
+            <button><i>I</i></button>
+            <button><u>U</u></button>
+        </div>
+        <div class="actions">
+            <button class="cancel" a href="materia.php">Atras</button>
+            <button class="publish">Enviar</button>
+        </div>
+    </div>
+</body>
+</html>
+

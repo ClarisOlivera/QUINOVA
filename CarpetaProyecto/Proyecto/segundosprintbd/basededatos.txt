@@ -1,0 +1,168 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 12-06-2025 a las 21:24:45
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `segundosprint`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clases`
+--
+
+CREATE TABLE `clases` (
+  `id` int(11) NOT NULL,
+  `codigo` varchar(45) DEFAULT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  `cuenta_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cuenta`
+--
+
+CREATE TABLE `cuenta` (
+  `user` int(11) NOT NULL,
+  `contraseña` varchar(45) DEFAULT NULL,
+  `rol` varchar(45) DEFAULT NULL,
+  `bloqueado` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `cuenta`
+--
+
+INSERT INTO `cuenta` (`user`, `contraseña`, `rol`, `bloqueado`) VALUES
+(252501, 'linetsita', 'profesor', NULL),
+(252502, 'linetsita', 'profesor', NULL),
+(10000000, '10000000', 'estudiante', NULL),
+(13232150, '13232154', 'estudiante', NULL),
+(22222222, '12345678', 'estudiante', NULL),
+(25000907, 'holamundo', 'profesor', NULL),
+(55556667, '12345fer', 'estudiante', NULL),
+(55556668, '12345fer', 'estudiante', NULL),
+(88888888, 'sgggfhgtsrt', 'estudiante', NULL),
+(111111111, '12345678', 'estudiante', NULL),
+(566566566, '11111111', 'profesor', NULL),
+(666666666, '', '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cuenta_has_clases`
+--
+
+CREATE TABLE `cuenta_has_clases` (
+  `cuenta_user` int(11) NOT NULL,
+  `clases_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `informacion`
+--
+
+CREATE TABLE `informacion` (
+  `nombres` varchar(45) DEFAULT NULL,
+  `apellidos` varchar(45) DEFAULT NULL,
+  `direccion` varchar(45) DEFAULT NULL,
+  `fechadenacimiento` varchar(45) DEFAULT NULL,
+  `telefono` varchar(45) DEFAULT NULL,
+  `curso` varchar(45) DEFAULT NULL,
+  `ci` varchar(45) NOT NULL,
+  `rude` bigint(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `informacion`
+--
+
+INSERT INTO `informacion` (`nombres`, `apellidos`, `direccion`, `fechadenacimiento`, `telefono`, `curso`, `ci`, `rude`) VALUES
+('fernanda', 'moriset rojas', 'dfbgfhjdfggdsvhgf', '2025-05-31', '1000000', 'sextob', '10000000', 10000000),
+('dgfrthdfggdg', 'sfdvgdvbgfbhh', 'dfbgfhjdfggdsvhgf', '2025-06-26', '4444444', 'sexto', '111111111', 12444144),
+('nayara', 'moriset rojas', 'uyuni', '2025-05-30', '6666666', 'sexto', '112233', 11223341),
+('claris nayara', 'olivera cortez', 'uyuni avenida', '1111-11-11', '71111111', '6', '22222222', 2147483647),
+('Alejandro', 'Peña Moriset', 'Av. Circunvalacion #1122', '2009-02-14', '4252525', '5toB', '233444', 112233445),
+('Alejandro', 'Peña Moriset', 'Av. Circunvalacion #1122', '2009-02-14', '4252525', '5toB', '2334445555', 1122334455),
+('Juan Pedro', 'CHOQUEHUANCA GUZMAN', 'monte de la sur', '2025-05-14', '55555555', 'sextob', '25000907', 69696969),
+('Flint', 'Ni Loco', 'El colegio que te toco:)', '2012-12-12', '4228801', '6toB', '252501', 2424351524),
+('Flint Roger', 'Loco Ni', 'El colegio que te toco :(', '2012-12-12', '4228801', '6toB', '252502', 24243515245),
+('fernanda', 'coca villca', 'zona sud', '2025-06-19', '67514086', '6to', '55556667', 77778844),
+('fernanda', 'coca villca', 'zona sud', '2025-06-19', '67514086', '6to', '55556668', 77778845),
+('nayara', 'moriset rojas', 'uyuni', '2011-11-11', '2333444', 'sextob', '566566566', 555566787),
+('ariana linet', 'moriset rojas', 'uyuni', '1111-11-11', '26726726', 'sexto', '666666666', 88888888);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `clases`
+--
+ALTER TABLE `clases`
+  ADD PRIMARY KEY (`id`,`cuenta_user`),
+  ADD KEY `fk_clases_cuenta1_idx` (`cuenta_user`);
+
+--
+-- Indices de la tabla `cuenta`
+--
+ALTER TABLE `cuenta`
+  ADD PRIMARY KEY (`user`);
+
+--
+-- Indices de la tabla `cuenta_has_clases`
+--
+ALTER TABLE `cuenta_has_clases`
+  ADD PRIMARY KEY (`cuenta_user`,`clases_id`),
+  ADD KEY `fk_cuenta_has_clases_clases1_idx` (`clases_id`),
+  ADD KEY `fk_cuenta_has_clases_cuenta1_idx` (`cuenta_user`);
+
+--
+-- Indices de la tabla `informacion`
+--
+ALTER TABLE `informacion`
+  ADD PRIMARY KEY (`ci`),
+  ADD UNIQUE KEY `ci` (`ci`),
+  ADD UNIQUE KEY `rude` (`rude`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `clases`
+--
+ALTER TABLE `clases`
+  ADD CONSTRAINT `fk_clases_cuenta1` FOREIGN KEY (`cuenta_user`) REFERENCES `cuenta` (`user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `cuenta_has_clases`
+--
+ALTER TABLE `cuenta_has_clases`
+  ADD CONSTRAINT `fk_cuenta_has_clases_clases1` FOREIGN KEY (`clases_id`) REFERENCES `clases` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_cuenta_has_clases_cuenta1` FOREIGN KEY (`cuenta_user`) REFERENCES `cuenta` (`user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

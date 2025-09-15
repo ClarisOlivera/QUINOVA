@@ -1,0 +1,114 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema segundosprint
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema segundosprint
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `segundosprint` DEFAULT CHARACTER SET utf8 ;
+USE `segundosprint` ;
+
+-- -----------------------------------------------------
+-- Table `segundosprint`.`cuenta`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `segundosprint`.`cuenta` (
+  `User` INT NOT NULL,
+  `contraseña` VARCHAR(45) NULL,
+  `rol` VARCHAR(45) NULL,
+  `bloqueado` INT NULL,
+  PRIMARY KEY (`User`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `segundosprint`.`informacion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `segundosprint`.`informacion` (
+  `ci` INT NOT NULL,
+  `nombres` VARCHAR(45) NULL,
+  `apellidos` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL,
+  `fechadenacimiento` DATE NULL,
+  `telefono` INT NULL,
+  `curso` VARCHAR(45) NULL,
+  `rude` INT NULL,
+  `cuenta_User` INT NOT NULL,
+  PRIMARY KEY (`ci`, `cuenta_User`),
+  INDEX `fk_informacion_cuenta1_idx` (`cuenta_User` ASC) ,
+  CONSTRAINT `fk_informacion_cuenta1`
+    FOREIGN KEY (`cuenta_User`)
+    REFERENCES `segundosprint`.`cuenta` (`User`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `segundosprint`.`clases`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `segundosprint`.`clases` (
+  `id` INT NOT NULL,
+  `codigo` VARCHAR(45) NULL,
+  `nombre` VARCHAR(45) NULL,
+  `cuenta_User` INT NOT NULL,
+  INDEX `fk_clases_cuenta1_idx` (`cuenta_User` ASC) ,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_clases_cuenta1`
+    FOREIGN KEY (`cuenta_User`)
+    REFERENCES `segundosprint`.`cuenta` (`User`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `segundosprint`.`publicaciones`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `segundosprint`.`publicaciones` (
+  `id` INT NOT NULL,
+  `contenido` VARCHAR(45) NULL,
+  `fechaC` DATETIME NULL,
+  `fechaE` DATETIME NULL,
+  `nombre` VARCHAR(45) NULL,
+  `clases_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `clases_id`),
+  INDEX `fk_publicaciones_clases1_idx` (`clases_id` ASC) ,
+  CONSTRAINT `fk_publicaciones_clases1`
+    FOREIGN KEY (`clases_id`)
+    REFERENCES `segundosprint`.`clases` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `segundosprint`.`registroClase`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `segundosprint`.`registroClase` (
+  `cuenta_User` INT NOT NULL,
+  `clases_id` INT NOT NULL,
+  PRIMARY KEY (`cuenta_User`, `clases_id`),
+  INDEX `fk_cuenta_has_clases_clases1_idx` (`clases_id` ASC) ,
+  INDEX `fk_cuenta_has_clases_cuenta1_idx` (`cuenta_User` ASC) ,
+  CONSTRAINT `fk_cuenta_has_clases_cuenta1`
+    FOREIGN KEY (`cuenta_User`)
+    REFERENCES `segundosprint`.`cuenta` (`User`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cuenta_has_clases_clases1`
+    FOREIGN KEY (`clases_id`)
+    REFERENCES `segundosprint`.`clases` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
