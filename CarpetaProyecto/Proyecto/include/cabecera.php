@@ -3,107 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <title>Document</title>
     <style>
-         #superior {
-            display: flex;
-            background-color: rgb(40, 40, 100);
-            height: 20%;
-            position: fixed;
-            top: 0;
-            width: 100%;
-          
-        }
-      
-        #logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50px;
-            margin: 25px 20px 0 20px;
-            animation: girar 7s linear infinite;
-            text-shadow: 0px 4px 5px black;
-        }
-
-        @keyframes girar {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        #titulo {
-            font-size: 50px;
-            color: white;
-            margin-top: 50px;
-        }
-
         body {
-            background-color: bisque;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-        }
+    margin: 0;                                           /* Elimina el margen por defecto del navegador */
+    padding: 0;                                          /* Elimina el padding por defecto del navegador */
+    font-family: 'Poppins', sans-serif;                 /* Aplica la fuente 'Poppins' y si no está disponible, usa sans-serif */
+}
 
-        #paginas {
-            display: flex;
-            color: black;
-            margin-left: auto;
-            margin-right: 20px;
-            align-items: center;
-        }
+#superior {
+    display: flex;                                        /* Convierte el contenedor en flexbox */
+    align-items: center;                                   /* Centra verticalmente los elementos dentro del flexbox */
+    justify-content: space-between;                         /* Distribuye los elementos dejando espacio entre ellos */
+    background-color: rgba(230, 158, 5, 1);              /* Color de fondo amarillo/naranja */
+    padding: 15px 30px;                                    /* Espaciado interno: 15px arriba/abajo y 30px a los lados */
+    position: fixed;                                       /* Fija el header en la parte superior de la pantalla */
+    top: 0;                                                /* Coloca el contenedor en la parte más alta (pegado arriba) */
+    width: 100%;                                            /* Ocupa todo el ancho de la pantalla */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);                 /* Sombra debajo del header para dar profundidad */
+    z-index: 1000;                                          /* Asegura que el header esté por encima de otros elementos */
+}
 
-        #paginas a {
-            color: black;
-            background-color: bisque;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s, font-size 0.3s ease;
-            margin: 8px;
-            font-size: 30px;
-        }
+#logo {
+    width: 80px;                                                   /* Ancho del logo */
+    height: 80px;                                                    /* Alto del logo */
+    border-radius: 50%;                                            /* Convierte la imagen en un círculo */
+    animation: girar 10s linear infinite;                          /* Aplica la animación definida abajo, rotación infinita */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);                        /* Le da una sombra al logo */
+}
 
-        #paginas a:hover {
-            background-color: #887c7c;
-            font-size: 50px;
-        }
+@keyframes girar { 
+    100% { transform: rotate(360deg); }                    /* Define la animación: rota 360 grados */
+}
 
-         @media (max-width: 768px) {
-            #superior, #inferior {
-                flex-direction: column;
-                height: auto;
-                text-align: center;
-                position: static;
-            }
+#titulo {
+    color: #ffffff;                                 /* Color del texto en blanco */
+    font-size: 36px;                                 /* Tamaño de letra grande */
+    margin: 0 20px;                                   /* Espaciado lateral de 20px */
+    text-shadow: 1px 2px 4px rgba(0,0,0,0.4);       /* Sombra para resaltar el texto */
+    flex-grow: 1;                                      /* Hace que el título ocupe todo el espacio disponible */
+    text-align: left;                                 /* Alinea el título a la izquierda */
+}
 
-            #logo {
-                margin: 10px auto;
-            }
+#paginas {
+    display: flex;                         /* Convierte el contenedor de enlaces en flexbox */
+    align-items: center;                     /* Centra los enlaces verticalmente */
+    width: 100%;
+}
 
-            #titulo {
-                font-size: 30px;
-            }
+#paginas a {
+    text-decoration: none;                                      /* Quita el subrayado de los enlaces */
+    color: #ffffff;                                         /* Texto de los enlaces en blanco */
+    background-color: rgba(255,255,255,0.2);                /* Fondo semitransparente blanco */
+    padding: 10px 20px;                                       /* Espaciado interno de los enlaces */
+    margin-left: 10px;                                        /* Espaciado a la izquierda entre enlaces */
+    border-radius: 8px;                                       /* Bordes redondeados */
+    font-size: 18px;                                          /* Tamaño del texto */
+    transition: all 0.3s ease;                                /* Transición suave al pasar el mouse */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);                  /* Sombra leve para resaltar los botones */
+}
 
-            #titulo:hover {
-                font-size: 40px;
-            }
+#paginas a:hover {
+    background-color: rgba(255,255,255,0.4);                         /* Fondo más claro al pasar el mouse */
+    transform: translateY(-2px);                                        /* Mueve el botón hacia arriba un poco (efecto flotante) */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);                              /* Sombra más fuerte en hover */
+}
 
-            #paginas {
-                flex-direction: column;
-                align-items: center;
-                margin: 10px 0;
-            }
+/* Estilos para pantallas pequeñas (ej: celulares o tablets) */
+@media (max-width: 768px) {
+    #superior {
+        flex-direction: column;                      /* Coloca los elementos en columna en lugar de fila */
+        padding: 15px;                              /* Ajusta el padding */
+        text-align: center;                       /* Centra el contenido */
+    }
 
-            #paginas a {
-                font-size: 30px;
-                margin: 5px 0;
-            }
+    #titulo {
+        font-size: 36px;                       /* Mantiene el tamaño del título */
+        margin: 0px 10px;                      /* Ajusta el margen lateral */
+    }
 
-            #paginas a:hover {
-                font-size: 35px;
-            }
-        }
+    #paginas {
+        display: flex;                                 /* Mantiene el contenedor de enlaces como flex */
+        align-items: center;                          /* Centra verticalmente los enlaces */
+        margin-left: 20px;                            /* Añade un poco de espacio a la izquierda */
+    }
 
-
+    #paginas a {
+        margin: 5px 0;                              /* Reduce el margen entre enlaces */
+        font-size: 16px;                           /* Disminuye el tamaño de letra para móviles */
+    }
+}
     </style>
 </head>
 
@@ -117,6 +107,7 @@
                 <a href="nosotros.php">nosotros</a>
                 <a href="historia.php">historia</a>
                 <a href="ambientes.php">ambientes</a>
+                <a href="calendario.php">Calendario</a>
                 <a href="contacto.php">Contacto</a>
                 <a href="../segundosprintbd/primerform.php">Classroom</a>
             </nav>

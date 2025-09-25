@@ -26,49 +26,70 @@ $sql1="SELECT * FROM informacion WHERE ci =$ci;";
     <title>Document</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family:'Times New Roman', Times, serif;
+            background-color: #14207bff;
             margin: 0;
             padding: 20px;
         }
         h1 {
-            color: #333;
+            color: #ffffffff;
+            font-size: 4vh;
         }
         h2 {
             color: #555;
         }
-        div {
-            background: white;
-            padding: 20px;
+        #datos {
+            background: #f5f0f092;
+            padding: 10px;
             border-radius: 8px;
-            max-width: 600px;
+            max-width: 500px;
             margin: auto;
+            margin-left: -3vh;
+        }
+        #cursos {
+            background-color: #f5f0f092;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        #clases {
+            background-color: #ffffffff;
+            padding: 50px;
+            border-radius: 10px;
+            max-width: 200px;
+        }
+        p {
+            font-size: 20px;
+
         }
         </style>    
   </head>
   <body>
-    <div>
-    <h1>Bienvenido Docente</h1>
-    <h2>Nombre : <?php echo $fila1['nombres'] . " " . $fila1['apellidos']; ?></h2>
-    <h2>Curso encargado : <?php echo $fila1['curso']; ?></h2>
-    </div>
-    <div>
+    <div id="datos">
+    <h1>Bienvenido Profesor: <?php echo $fila1['nombres'] . " " . $fila1['apellidos']; ?></h1>
+    <h2>Del Curso: <?php echo $fila1['curso']; ?></h2><br>
+    </div> <br> <br>
+    <div id="cursos">
         <h2>Tus cursos</h2>
+        <div id="clases">
         <?php
         $sql2="SELECT * FROM clases WHERE cuenta_User = $ci ;";
         
         $resultado2 = mysqli_query($conn, $sql2);
         if(mysqli_num_rows($resultado2) > 0){
             while($fila2 = mysqli_fetch_assoc($resultado2)){
-                echo "<p>Curso: <a href='materiaDocente.php?codigo=" . $fila2['codigo'] . "'>" . $fila2['nombre'] . "</a> - Codigo: " . $fila2['codigo'] . "</p>";
+                echo "<p>Curso: <a href='materiaDocente.php?codigo=" . $fila2['codigo'] . "'>" . $fila2['nombre'] . "</a> <br>
+                Codigo: " . $fila2['codigo'] . "</p>";
             }
         } else {
-            echo "<p>No tienes cursos asignados.</p>";
+            echo "<p>No tienes clases creadas aun.</p>";
         }
         ?>
+        </div>
     </div>
-    <div>
+    <div id="cursos">
         <?php 
+        echo "<a href='./crear.php'>Crear Clase</a>"; 
+
             echo "<a href='./cerrarSesion.php'>Cerrar Sesion</a>";
         ?>
     </div>  

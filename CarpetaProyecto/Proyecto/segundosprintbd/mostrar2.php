@@ -2,7 +2,7 @@
 $nombreServidor="localhost";
 $usuario="root";
 $contraseña="";
-$basededatos="QUINOVA";
+$basededatos="segundosprint";
 
 $conexion= new mysqli($nombreServidor,$usuario,$contraseña,$basededatos);
 

@@ -52,7 +52,7 @@
         }
         
         #contenedor{
-            background-color: blue;
+            background-color: #353652ff;
             display: flex;                                                                                              
             
 

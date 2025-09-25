@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
   <style>
      body {
-            background-image: url(../imagenescol/fondopantalla.jpg);
+            background-image: url(../include/fondopantalla.jpg);
         }
     body {
       background-color: rgb(206, 160, 0);

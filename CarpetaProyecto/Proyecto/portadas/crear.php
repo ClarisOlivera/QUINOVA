@@ -18,42 +18,44 @@ $nombre=$_SESSION['nombreCompleto'];
             
         }
         #cajaForm{
-            background-color: rgba(255, 255, 255, 0.29);
+            background-color: rgba(0, 0, 0, 0.29);
         }
         div {
             top: 15vh;
             position: relative;
             width: 13cm;
-            padding: 1cm;
-            border-radius: 20px;
-            border: 5px solid #FFF6E5;
+            padding: 3cm;
+            border-radius: 10px;
+            border: 2px solid #ffffffff;
         }
 
         input {
-            background-color: #FFF6E5;
+            background-color: #ffffffff;
             color: #000000;
-            width: 12cm;
-            border-radius: 20px;
+            width: 15cm;
+            border-radius: 0px;
             height: 1cm;
             font-family: 'Times New Roman', Times, serif;
-            left: 2cm;
+            margin-left: -50px;
         }
 
         input:hover {
-            background-color: #b9b9b9;
+            background-color: #ccccccff;
         }
 
         ::placeholder {
-            color: #000000;
+            color: #0000003b;
         }
 
         legend {
-            color: #000000ff;
+            color: #ffffffff;
             text-align: left;
-            bottom: 10px;
+            bottom: 100px;
+            right:60px;
             position: relative;
-            font-size: 40px;
+            font-size: 60px;
             font-family: 'Times New Roman', Times, serif;
+            bottom: 5vh;
         }
 
         a {
@@ -72,6 +74,18 @@ $nombre=$_SESSION['nombreCompleto'];
 
         #nube {
             margin-right: 20px;
+        }
+        #ndlcc {
+            color: #ffffffff;
+            font-family: 'Times New Roman ', Times, serif;
+            font-size:2vh;
+            margin-left:-30vh;
+        }
+        #codigo{
+            color: #ffffffff;
+            font-family: 'Times New Roman ', Times, serif;
+            font-size:2vh;
+            margin-left:-53vh;
         }
         @media(max-width: 768px) {
             div {
@@ -107,13 +121,15 @@ $nombre=$_SESSION['nombreCompleto'];
 <body>
     <center>
         <div id="cajaForm">
-            <form action="crearclase.php" method="post" id="mango">
+            <form action="./crearclase.php" method="post" id="mango">
                 <legend>CREAR CLASE</legend>
-                <input type="text" placeholder="NOMBRE DE LA CLASE" name="Nombre"><br><br>
-                <input type="text" placeholder="CODIGO" name="Seccio"><br><br>
-                <input type="text" placeholder="CURSO" name="Aul"><br><br><br><br>
-                <input type="Submit" value="Cancelar" formnovalidate>
-                <input type="Submit">
+                <label for="" id="ndlcc">NOMBRE DE LA CLASE Y CURSO</label>
+                <input type="text" placeholder="Ej: BIOLOGIA CELULAR 5to B" name="Nombre"><br><br>
+                <label for="" id="codigo">CODIGO</label><br>
+                <input type="text" placeholder="Ej. 30a05n" name="Seccio"><br><br>
+
+                <input type="Submit" value="CANCELAR" formnovalidate><br><br>
+                <input type="Submit" value="CREAR">
             </form>
         </div>
     </center>
@@ -125,13 +141,13 @@ $nombre=$_SESSION['nombreCompleto'];
                     Nombre: {
                         required: true,
                         minlength: 3,
-                        maxlength: 20
+                        maxlength: 40
                     },
                     Seccio: {
                         required: true,
                         minlength: 3,
                         maxlength: 20
-                    },
+                    }, 
                     Mate: {
                         required: true,
                         minlength: 3,
@@ -147,7 +163,7 @@ $nombre=$_SESSION['nombreCompleto'];
                     Nombre: {
                         required: "El nombre que se vaya a poner es obligatorio",
                         minlength: "Debe tener mínimo 3 letras",
-                        maxlength: "No debe pasar de 20 letras"
+                        maxlength: "No debe pasar de 40 letras"
                     },
                     Seccio: {
                         required: "La sección que se vaya a poner es obligatoria",

@@ -1,23 +1,24 @@
 <?php
-include('../../db.php');
+    session_start();
+    include('../../db.php');
+    $_SESSION['codigoClase'] = $_GET['codigo'];
+    $consultaClase = "SELECT * FROM clases WHERE codigo = '".$_GET['codigo']."'";
+    $resultadoClase = $conn->query($consultaClase);
+    if ($resultadoClase->num_rows > 0) {
+        $filaClase = $resultadoClase->fetch_assoc();   
+        $nombreClase = $filaClase['nombre'];
 
-// Obtener el ID de la clase desde la URL
-session_start();
-$idClase = isset($_GET['codigo']) ? intval($_GET['codigo']) : 0;
-$nombre=$_SESSION['nombreCompleto'];
-      $sql1="SELECT * FROM clases WHERE codigo =$idClase";
+        $idClase = $filaClase['id'];
+        $_SESSION['idClase'] = $idClase;
+    }
 
-      $resultado1=$conn->query($sql1);
-        if($resultado1->num_rows>0){
-            $filaCurso = mysqli_fetch_assoc($resultado1);
-                $codigo=$filaCurso['codigo'];
-                $nombreClase=$filaCurso['nombre'];
-                $ci=$filaCurso['cuenta_User'];
-                $sql2="SELECT *FROM cuenta WHERE user='$ci'";
-                $resultado2=$conn->query($sql2);
-                $fila2=$resultado2->fetch_assoc();
-                $id=$idClase;
-            }      
+    $consultaDocente = "SELECT * FROM informacion WHERE ci = '".$_SESSION['ci']."'";
+    $resultadoDocente = $conn->query($consultaDocente);
+    if ($resultadoDocente->num_rows > 0) {
+        $filaDocente = $resultadoDocente->fetch_assoc();   
+        $nombreProfesor = $filaDocente['nombres'] . " " . $filaDocente['apellidos'];
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -37,7 +38,7 @@ $nombre=$_SESSION['nombreCompleto'];
       background-color: #fff;
       padding: 40px;
       border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      box-shadow: 0 0 12px rgba(0,0,0,0.1); 
     }
     h1 {
       color: #222;
@@ -62,13 +63,30 @@ $nombre=$_SESSION['nombreCompleto'];
     a:hover {
       text-decoration: underline;
     }
-    .colorblue{
-       background-color: pink;
-      }
 
+    .boton {
+      background-color: #0b2c5d;
+      color: #ead5ab;
+      display: flex;
+      align-items: center;
+      padding: 50px 40px; 
+      border-radius: 12px;
+      margin-top: 20px;
+      font-size: 18px; 
 
-  
     
+      font-family: Georgia, 'Times New Roman', Times, serif;
+ 
+    }
+
+    .circulo {
+      width: 30px;
+      height: 30px;
+      background-color: #ead5ab;
+      border-radius: 50%;
+      margin-right: 20px;
+  
+    }
   </style>
 </head>
 <body>
@@ -77,38 +95,48 @@ $nombre=$_SESSION['nombreCompleto'];
     
       <div class="error">
         <h1><?php echo $nombreClase; ?></h1>
-        <p><strong>Código:</strong> <?php echo $codigo; ?></p>
-        <p><strong>Por usuario:</strong> <?php echo $_SESSION['nombreCompleto'] ?> </p>
+        <p><strong>Código:</strong> <?php echo $_GET['codigo']; ?></p>
+        <p><strong>Por docente:</strong> <?php echo $nombreProfesor ?> </p>
       </div>
-      
-
-    <a href="./profesores.php">← Volver atras</a>
+    <a href="profesores.php">← Volver atras</a>
+    <a href="http://"></a>
     
-    
+    <form action="megusta.php">
       <input type="Submit" value="Me Gusta">
     </form>
   </div>
-    <div class="colorblue">
-     <form action="subirarchivo.php">
-      
-      <input type="Submit" value="AGREGA UN COMENTARIO">
-     </form>
+    <div class="contenedor">
+        <h2>Tareas de la clase</h2>
+        <a href="tareasDocente.php?codigo=<?php echo $_SESSION['codigoClase']; ?>">Ver y asignar tareas</a>
     </div>
-  <!-- <div class="boton">
-    <div class="circulo"></div>
-    AGREGA UN ANUNCIO PUBLICO
+  <div class="contenedor">
+    <h2>Publicaciones</h2>
+    <?php
+    $sqlPublicaciones = "SELECT * FROM publicaciones WHERE clases_id = '$_SESSION[idClase]
+' ORDER BY fechaC DESC";
+
+    $resultadoPublicaciones = $conn->query($sqlPublicaciones);
+    if ($resultadoPublicaciones->num_rows > 0) {
+        while ($filaPub = $resultadoPublicaciones->fetch_assoc()) {
+            echo '<div class="boton">';
+            echo '<div class="circulo"></div>';
+            echo '<div>';
+            echo '<p>' .($filaPub['contenido']) . '</p>';
+            echo '<small>Publicado el ' . $filaPub['fechaE'] . '</small><br>';
+            echo "<a href='../tercersprint/eliminarPublicacion.php?id=" . $filaPub['id'] . "'>Eliminar</a>";
+            if($filaPub['nombre'] == $_SESSION['nombreCompleto']){    
+              echo "<br>" . "<a href='editarPublicacion.php?id=" . $filaPub['id'] . "'>Editar</a>";
+            }
+              echo '</div>';
+              echo '</div><br>';
+            }
+          
+    } else {
+        echo '<p>No hay publicaciones en esta clase.</p>';
+    } 
+    ?>
+    <a href="../formupublicaciones.php">Crear publicacion</a>
   </div>
-
-  <div class="boton">
-    <div class="circulo"></div>
-    NOMBRE Publicó una tarea: tarea
-  </div>
-
-  <div class="boton">
-    <div class="circulo"></div>
-    NOMBRE Publicó una tarea: tarea
-  </div> 
-</div>-->
-
+</div>
 </body>
 </html>

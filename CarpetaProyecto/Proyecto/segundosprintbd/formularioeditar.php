@@ -9,7 +9,7 @@
         if ($conexion->connect_error){
             echo "Hubo un error :(";
         }
-        $id=$_GET['i'] ;
+        $id=$_GET['ci'] ;
         $sql1="SELECT * FROM informacion WHERE ci='$id'" ;
         $resultado1= $conexion->query($sql1);
 

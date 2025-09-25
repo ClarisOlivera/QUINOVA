@@ -5,265 +5,343 @@
   <title>Colegio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * {
-      box-sizing: border-box;
+     body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0 20px;
+        background-color: #f5f5f5;
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      height: 100%;
+    h1, h2 {
+        text-align: center;
+        color: #002855;
     }
 
-    body {
-      display: flex;
-      flex-direction: column;
+    h2 {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        color: #e19e05; 
     }
 
-    .contenedor {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 30px 20px;
-      margin-top: 10%;
+    .area {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 50px;
     }
 
-    .caja {
-      background-color: darkblue;
-      color: #f5f0e6;
-      padding: 30px 20px;
-      width: 400px;
-      border-radius: 10px;
-      font-size: 18px;
-      text-align: center;
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    .card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        width: 200px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.2s;
     }
 
-    .caja h2 {
-      font-size: 26px;
-      margin-top: 0;
-      margin-bottom: 10px;
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
 
-    .linea-divisoria {
-      height: 4px;
-      background-color: #000000;
-      margin: 40px auto;
-      width: 80%;
-      border-radius: 4px;
+    .emoji {
+        font-size: 50px;
+        margin-bottom: 10px;
     }
 
-    .main {
-      display: flex;
-      justify-content: center;
-      padding: 30px 20px;
-      gap: 40px;
+    .nombre {
+        font-weight: 600;
+        color: #002855;
+        margin-bottom: 5px;
     }
 
-    .left-side, .right-side {
-      max-width: 600px;
-    }
-
-    .left-side h2 {
-      font-size: 26px;
-      text-align: center;
-      margin-bottom: 20px;
-      font-family: Garamond;
-    }
-
-    .right-side {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .circulos {
-      text-align: center;
-    }
-
-    .ciquito {
-      background-color: darkblue;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin: 0 auto 10px;
-    }
-
-    .circulo-texto {
-      font-weight: bold;
-      font-size: 16px;
-      font-family: Garamond;
-    }
-
-    #tercero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      gap: 30px;
-    }
-
-    .nivel-item {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 30px;
-     
-    }
-
-    .nivel-img, .nivel-texto {
-      width: 300px;
-      height: 180px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      border-radius: 8px;
-    }
-
-    .nivel-img {
-      background-color: darkblue;
-      border: 2px solid black;
-      
-    }
-
-    .nivel-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .nivel-texto {
-      background-color: #eee;
-      border: 2px solid #aaa;
-      padding: 10px;
-    }
-
-    #cuarto {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 15vh;
-    }
-
-    #cuarto a {
-      background-color: darkblue;
-      font-family: 'Times New Roman', Times, serif;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
-      margin-bottom: 29vh;
-      text-decoration: none;
-    }
-
-    @media screen and (max-width: 900px) {
-      .contenedor,
-      .main {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .right-side {
-        grid-template-columns: 1fr;
-      }
-
-      .nivel-item {
-        flex-direction: column;
-      }
-
-      .nivel-img, .nivel-texto {
-        width: 90%;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .ciquito {
-        width: 80px;
-        height: 80px;
-      }
-
-      .circulo-texto {
+    .cargo {
         font-size: 14px;
-      }
+        color: #555;
     }
-  </style>
+
+    /* espacio para que el footer no tape las últimas tarjetas */
+    .espaciador {
+        height: 120px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+        .card {
+            width: 45%;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .card {
+            width: 100%;
+        }
+    }
+</style>
 </head>
 <body>
-  <?php include('../include/cabecera.php'); ?>
+  <?php include('../include/cabecera.php'); ?> 
+<h1>Plantel Docente 2025</h1>
 
-  <!-- Misión y Visión -->
-  <div class="contenedor">
-    <div class="caja">
-      <h2>🎯 MISIÓN</h2>
-      <p>
-        Formar estudiantes íntegros, con una sólida preparación académica que desarrollen una vocación de servicio para la comunidad y sociedad, a través de la práctica de los valores de la disciplina, respeto y responsabilidad.
-      </p>
+<!-- Área Dirección -->
+<h2>Dirección</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">👨‍💼</div>
+        <div class="nombre">David Félix Cordero Arancibia</div>
+        <div class="cargo">Director</div>
     </div>
-    <div class="caja">
-      <h2>👁 VISIÓN</h2>
-      <p>
-        Formar estudiantes con habilidades sociales, emocionales y académicas, enfatizando la práctica de los valores humanos y la participación activa de todos los actores educativos.
-      </p>
+</div>
+
+<!-- Área Ciencias Naturales -->
+<h2>Ciencias Naturales</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">👩‍🔬</div>
+        <div class="nombre">Ariel Aaron Alcocer Vasquez</div>
+        <div class="cargo">Biología</div>
     </div>
-  </div>
-
-  <div class="linea-divisoria"></div>
-
-  <!-- ¿Por qué la unidad educativa...? -->
-  <div class="main">
-    <div class="left-side">
-      <h2>¿POR QUÉ LA UNIDAD EDUCATIVA “ELENA ARZE DE ARZE”?</h2>
-      <div class="caja">
-        Somos una institución con historia, fundada en 1947, que forma estudiantes íntegros, con excelencia académica, valores humanos y compromiso social, a través de una educación contextualizada, científica e innovadora.
-      </div>
+    <div class="card">
+        <div class="emoji">👩‍🔬</div>
+        <div class="nombre">Silvia Eugenia Balderrama Quina</div>
+        <div class="cargo">Biología</div>
     </div>
-
-    <div class="right-side">
-      <div class="circulos">
-        <div class="ciquito"></div>
-        <div class="circulo-texto">DIR. DAVID FELIX CORDERO ARANCIBIA</div>
-      </div>
-      <div class="circulos">
-        <div class="ciquito"></div>
-        <div class="circulo-texto">SEC. MARGARITA LARA BARRIENTOS</div>
-      </div>
-      <div class="circulos">
-        <div class="ciquito"></div>
-        <div class="circulo-texto">AA. MARITZA LUIZAGA ESPINOZA</div>
-      </div>
-      <div class="circulos">
-        <div class="ciquito"></div>
-        <div class="circulo-texto">AA. DAMARIS VARGAS GARCIA</div>
-      </div>
+    <div class="card">
+        <div class="emoji">👨‍🔬</div>
+        <div class="nombre">Noelia Iveth Camacho Veizaga</div>
+        <div class="cargo">Biología</div>
     </div>
-  </div>
-
-  <div class="linea-divisoria"></div>
-
-  <!-- Niveles -->
-  
-
-    <div class="nivel-item">
-      <div class="nivel-img">
-        <img src="../imagenescol/secundaria.jpg" alt="Secundaria">
-      </div>
-      <div class="nivel-texto">
-         En el Nivel Secundario preparamos a estudiantes para desafíos académicos y profesionales.
-      </div>
+    <div class="card">
+        <div class="emoji">👨‍🔬</div>
+        <div class="nombre">Viviana Paola Nogales Garcia</div>
+        <div class="cargo">Biología</div>
     </div>
-  </div>
+    <div class="card">
+        <div class="emoji">👩‍🔬</div>
+        <div class="nombre">Jeanneth Totora Salazar</div>
+        <div class="cargo">Biología</div>
+    </div>
+    <div class="card">
+        <div class="emoji">👨‍🔬</div>
+        <div class="nombre">Hugo Villarroel Aviles</div>
+        <div class="cargo">Física</div>
+    </div>
+    <div class="card">
+        <div class="emoji">👩‍🔬</div>
+        <div class="nombre">Maria Neyza Villarroel Soliz</div>
+        <div class="cargo">Física / Química</div>
+    </div>
+</div>
 
-  <!-- Botón -->
-  <div id="cuarto">
-    <a href="plantel.php">Plantel docente</a>
-  </div>
+<!-- Área Matemática -->
+<h2>Matemática</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">🧮</div>
+        <div class="nombre">Mariela Dubreika Flores Fernandez</div>
+        <div class="cargo">Matemática</div>
+    </div>
+    <div class="card">
+        <div class="emoji">🧮</div>
+        <div class="nombre">Damian Mendoza Ajhuacho</div>
+        <div class="cargo">Matemática</div>
+    </div>
+    <div class="card">
+        <div class="emoji">🧮</div>
+        <div class="nombre">Dely Pinto Blanco</div>
+        <div class="cargo">Matemática</div>
+    </div>
+</div>
 
-  <!-- Incluir footer -->
-  <?php include('../include/footer.php'); ?>
+<!-- Área Ciencias Sociales -->
+<h2>Ciencias Sociales</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">📚</div>
+        <div class="nombre">Jose Walter Arnez Arnez</div>
+        <div class="cargo">Ciencias Sociales</div>
+    </div>
+    <div class="card">
+        <div class="emoji">📚</div>
+        <div class="nombre">Carolina Carla Bustamante Molina</div>
+        <div class="cargo">Ciencias Sociales</div>
+    </div>
+    <div class="card">
+        <div class="emoji">📚</div>
+        <div class="nombre">Hugo Garcia Claros</div>
+        <div class="cargo">Ciencias Sociales</div>
+    </div>
+    <div class="card">
+        <div class="emoji">📚</div>
+        <div class="nombre">Rose Mary Serrudo Vargas</div>
+        <div class="cargo">Ciencias Sociales</div>
+    </div>
+    <div class="card">
+        <div class="emoji">📚</div>
+        <div class="nombre">Ines Torrez Vasquez</div>
+        <div class="cargo">Ciencias Sociales</div>
+    </div>
+</div>
+
+<!-- Área Lenguaje -->
+<h2>Lenguaje y Comunicación</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">✏️</div>
+        <div class="nombre">Abel Javier Calle Camacho</div>
+        <div class="cargo">Lenguaje y Comunicación</div>
+    </div>
+    <div class="card">
+        <div class="emoji">✏️</div>
+        <div class="nombre">Celia Mallcu Montoya</div>
+        <div class="cargo">Lenguaje y Comunicación</div>
+    </div>
+    <div class="card">
+        <div class="emoji">✏️</div>
+        <div class="nombre">Jose Melgarejo Terrazas</div>
+        <div class="cargo">Lenguaje y Comunicación</div>
+    </div>
+    <div class="card">
+        <div class="emoji">✏️</div>
+        <div class="nombre">Selma Amparo Maldonado Camacho</div>
+        <div class="cargo">Lenguaje y Comunicación</div>
+    </div>
+    <div class="card">
+        <div class="emoji">✏️</div>
+        <div class="nombre">Aleja Celina Nogales Rocabado</div>
+        <div class="cargo">Lenguaje y Comunicación</div>
+    </div>
+</div>
+
+<!-- Área Valores / Religión -->
+<h2>Valores y Religión</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">🕊️</div>
+        <div class="nombre">Rosario Magdalena Aranibar Del Castillo</div>
+        <div class="cargo">Valores / Religión</div>
+    </div>
+    <div class="card">
+        <div class="emoji">🕊️</div>
+        <div class="nombre">Marina Blanco Mamani</div>
+        <div class="cargo">Valores / Religión</div>
+    </div>
+</div>
+
+<!-- Área Artes -->
+<h2>Artes Plásticas y Visuales</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">🎨</div>
+        <div class="nombre">Felipa Lourdes Coca Camacho</div>
+        <div class="cargo">Artes Plásticas y Visuales</div>
+    </div>
+    <div class="card">
+        <div class="emoji">🎨</div>
+        <div class="nombre">Guido Gonzalo Solis Quiroga</div>
+        <div class="cargo">Artes Plásticas y Visuales</div>
+    </div>
+    <div class="card">
+        <div class="emoji">🎨</div>
+        <div class="nombre">Silvia Vicente Muyurico</div>
+        <div class="cargo">Artes Plásticas y Visuales</div>
+    </div>
+</div>
+
+<!-- Área Inglés -->
+<h2>Lengua Extranjera Inglés</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">👩‍🏫</div>
+        <div class="nombre">Juana Alcira Arispe Meruvia</div>
+        <div class="cargo">Inglés</div>
+    </div>
+    <div class="card">
+        <div class="emoji">👩‍🏫</div>
+        <div class="nombre">Celia Vera Camacho</div>
+        <div class="cargo">Inglés</div>
+    </div>
+</div>
+
+<!-- Área Psicología y Filosofía -->
+<h2>Psicología y Filosofía</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">🧠</div>
+        <div class="nombre">Esperanza Nancy Condori Choque</div>
+        <div class="cargo">Psicología / Filosofía</div>
+    </div>
+    <div class="card">
+        <div class="emoji">🧠</div>
+        <div class="nombre">David Antonio Crespo Duran</div>
+        <div class="cargo">Psicología / Filosofía</div>
+    </div>
+</div>
+
+<!-- Área Educación Musical -->
+<h2>Educación Musical</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">🎵</div>
+        <div class="nombre">Jose Eloy Almendras Balderrama</div>
+        <div class="cargo">Educación Musical</div>
+    </div>
+    <div class="card">
+        <div class="emoji">🎵</div>
+        <div class="nombre">Javier Mollo Coaquira</div>
+        <div class="cargo">Educación Musical</div>
+    </div>
+</div>
+
+<!-- Área Educación Física -->
+<h2>Educación Física y Deportes</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">🏃‍♂️</div>
+        <div class="nombre">Cornelio Jimenez Enriquez</div>
+        <div class="cargo">Educación Física</div>
+    </div>
+    <div class="card">
+        <div class="emoji">🏃‍♀️</div>
+        <div class="nombre">Fresia Vargas Rodriguez</div>
+        <div class="cargo">Educación Física</div>
+    </div>
+</div>
+
+<!-- Área Técnica / Administrativos -->
+<h2>Técnica y Administración</h2>
+<div class="area">
+    <div class="card">
+        <div class="emoji">💻</div>
+        <div class="nombre">Shachenka Juana Carrasco Uriona</div>
+        <div class="cargo">Técnica Tecnológica</div>
+    </div>
+    <div class="card">
+        <div class="emoji">📎</div>
+        <div class="nombre">Olivia Margarita Barrientos Lara</div>
+        <div class="cargo">Secretaria</div>
+    </div>
+    <div class="card">
+        <div class="emoji">📎</div>
+        <div class="nombre">Teodora Maritza Espinoza Luizaga</div>
+        <div class="cargo">Asistente Administrativa</div>
+    </div>
+    <div class="card">
+        <div class="emoji">📎</div>
+        <div class="nombre">Damaris Garcia Vargas</div>
+        <div class="cargo">Asistente Administrativa</div>
+    </div>
+    <div class="card">
+        <div class="emoji">🧹</div>
+        <div class="nombre">Amparo Claudina Cabero Paz</div>
+        <div class="cargo">Portera</div>
+    </div>
+</div>
+
+<div class="espaciador"></div>
+<?php include('../include/footer.php'); ?> 
+
 </body>
 </html>

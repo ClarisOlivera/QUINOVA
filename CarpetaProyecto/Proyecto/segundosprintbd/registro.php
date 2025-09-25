@@ -22,25 +22,15 @@
     $contra=$_POST['contra'];
 
     $sql1="INSERT INTO informacion (nombres, apellidos, direccion, fechadenacimiento, telefono, curso, ci, rude,cuenta_User) VALUES ('$nombres', '$apellidos', '$direccion', '$fecha', '$telefono', '$curso', '$ci','$rude','$ci')";    
-    $sql2="INSERT INTO cuenta (user, rol, contraseña) VALUES ('$ci','$rol','$contra')";
+    $sql2="INSERT INTO cuenta (user, rol, contraseña, bloqueado) VALUES ('$ci','$rol','$contra', '0')";
     echo $sql1;
     if ($conn->query($sql2)=== TRUE){
         if ($conn->query($sql1)=== TRUE){
         session_start();
-        $_SESSION['ci']=$ci;
-        $_SESSION['rol']=$rol;
-        echo $_SESSION['rol'];
-        if($_SESSION['rol']=='estudiante'){
-            header("location:../portadas/estudiante.php");
-            exit();
-        }else
-        if($_SESSION['rol']=='profesor'){
-            header("location:../portadas/profesores.php");
-            exit();
-        }
-    }
+            header("location:../segundosprintbd/primerform.php");
     }else{
         echo "Error:" . $sql2 . "<br>" . $conn->error;
+    }
     }
     $conn->close();
 ?>

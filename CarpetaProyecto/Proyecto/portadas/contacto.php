@@ -27,7 +27,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      background-color: rgb(206, 160, 0);
+      background-color: rgba(230, 158, 5, 1); 
       padding: 15px;
       border-radius: 20px;
       height: 1000%;

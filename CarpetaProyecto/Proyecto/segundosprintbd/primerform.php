@@ -11,8 +11,11 @@
              padding: 0;
              box-sizing: border-box;
             }
+             body {
+            background-image: url(../include/fondopantalla.jpg);
+        }
         body {
-            background-image: url("music-musical-instrument-guitar-two-dark-background.png");
+            background-image: url(../include/fondopantalla.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             display: flex;
@@ -23,17 +26,19 @@
             background-color: beige;
 
 
+
         }
         #caja {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    border: 2px solid rgb(241, 241, 241);
-    background: #0b0b35;
-    padding: 50px;
+    border: 2px solid rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.29);
+    padding: 60px;
     text-align: center;
     width: 325px;
     height: auto;
+    font-family: 'Times New Roman', Times, serif;
     animation-name: hola;
     animation-duration: 4s;
     animation-timing-function: ease-in-out;
@@ -66,55 +71,81 @@
         cursor: pointer;
         transition: all 0.2s ease-in-out;
         font-size: 25px;
-        font-family: 'Brush Script MT', cursive;
+        font-family: 'Times New Roman', Times, serif;
         font-weight: 100;
         }
         #boton:hover {
             background-color: rgb(70, 69, 69);
         }
+        .boton:hover{
+                        background-color: rgba(151, 151, 151, 1);
+
+        }
+        .registro:hover{
+                        background-color: rgba(151, 151, 151, 1);
+
+        }
+        
         a{
             color: black;
             text-decoration: none;
             margin-top: 10px;
         }
         .titulo{
-            font-family: 'Cinzel', serif;
+            font-family: 'Times New Roman', Times, serif;
             font-size: 48px;
-            color: #e9e7cc;
+            color: #ffffffff;
         }
         .subtitulo {
-            font-family: 'Brush Script MT', cursive;
+            font-family: 'cincel', self
             font-size: 32px;
-            color: #cecba8;
+            color: #ffffffff;
         }
         
         label.error {
-            color: beige;
+            color: #ffffffff;
             font-size: 14px;
             margin-top: 5px;
             display: block;
         }
 
         #caja label {
-           color: beige;
+            color: #ffffffff;
            font-size: 16px;
            margin-top: 10px;
            text-align: left;
         }
-        
+        .boton{
+            background-color: #ffffffff; 
+            border: 1px;
+            margin-bottom:4px;
+        }
+        .registro{
+             background-color: #ffffffff; 
+             border: 1px;
+             margin-bottom:4px;
+
+        }
     </style>
 </head>
 <body>
+  
     <form action="logueo2.php" method="post" id="caja">
             <div class="titulo">QUINOVA</div>
-            <div class="subtitulo">Inicia Sesión</div><br>
-            <label for="CodigoRude">Carnet de Identidad</label>
+            <div class="subtitulo">INICIA SESION</div><br>
+            <label for="CodigoRude">CARNET DE IDENTIDAD</label>
             <input type="number" id="ci" name="ci"><br>
-            <label for="contra">Contraseña</label>
-            <input type="password" id="contra" name="contra"><br><br>
-            <input type="Submit">
+            <label for="contra">CONTRASEÑA</label>
+            <input type="password" id="contra" name="contra"><br>
+            <input type="Submit" value="Envia" class="env"><br>
+           <div class=boton>
+             <a href="../portadas/principal.php">Volver Atras</a>
+            </div><br>
+         <div class=registro>
+            <a href="segundoform.php">Registrate</a><br>
+         </div>
         </form>
-        <a href="segundoform.php">Registrate</a>
+
     </div>
     <script>
        

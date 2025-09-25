@@ -67,7 +67,7 @@
                 if(mysqli_num_rows($resultado2) > 0){
                     $fila3 = mysqli_fetch_assoc(mysqli_query($conn, $consultaMateria));
                 }
-                echo $fila2['clases_id'];
+
                 echo "<p>Curso: <a href='materia.php?codigo=" . $fila3['codigo'] . "'>" . $fila3['nombre'] . "</a> - Codigo: " . $fila3['codigo'] . "</p>";
             }
         } else {

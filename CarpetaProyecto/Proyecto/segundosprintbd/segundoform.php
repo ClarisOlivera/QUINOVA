@@ -17,7 +17,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 120vh;
         background-color: beige;
         }
         #caja {
@@ -29,7 +29,7 @@
         padding: 50px;
         text-align: center;
         width: 325px;
-        height: auto;
+
         animation-name: hola;
         animation-duration: 4s;
         animation-timing-function: ease-in-out;
@@ -70,6 +70,7 @@
         <label for="">Carnet De Identidad:</label>
         <input type="text" name="ci"><br>
         <label for="">Rol</label>
+        <label for="">Administrador</label><input type="radio" name="rol" value="administrador"><br>
         <label for="">Profesor</label><input type="radio" name="rol" value="profesor"><br>
         <label for="">Estudiante</label><input type="radio" name="rol" value="estudiante">
         <br>

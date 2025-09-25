@@ -1,31 +1,32 @@
 <?php
-include('../../db.php'); // Asegúrate que la ruta sea correcta
+include('../../db.php');
 session_start();
 
-if (!isset($_SESSION['ci'])) {      //
+if (!isset($_SESSION['ci'])) {
     die("Error: Sesión no iniciada.");
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $aula = $_POST['Aul'] ?? '';
-    $codigo = $_POST['Seccio'] ?? '';
-    $nom = $_POST['Nombre'] ?? '';
+    $nombreClase = $_POST['Nombre'];
+    $codigo = $_POST['Seccio'];
     $cuenta = $_SESSION['ci'];
-}
-$consultaVerificada = "SELECT * FROM clases WHERE codigo = ".$codigo.";";
-$resultadoVerificado = mysqli_query($conn, $consultaVerificada);
-if(mysqli_num_rows($resultadoVerificado) == 0){
-    $sql = "INSERT INTO clases (codigo, Nombre, cuenta_User) 
-            VALUES ('$codigo', '$nom', '$cuenta')";
-    //$sql="SELECT * FROM clases WHERE cuenta_User='$cuenta'";
-        if($conn->query($sql)===true){
-            header("Location: /QUINOVA.ORGmio/QUINOVA.ORG/portadas/materiaDocente.php?id=$conn->insert_id");
+
+    echo $nombreClase;
+    // Verifica que no exista ya una clase con ese código
+    $consultaVerificada = "SELECT * FROM clases WHERE codigo = '$codigo'";
+    $resultadoVerificado = mysqli_query($conn, $consultaVerificada);
+
+    if (mysqli_num_rows($resultadoVerificado) == 0) {
+        $sql = "INSERT INTO clases (codigo, nombre, cuenta_User)  
+                VALUES ('$codigo', '$nombreClase', '$cuenta')";
+        echo $sql;
+        if ($conn->query($sql) === TRUE) {
+            header("Location: ./materiaDocente.php?codigo=" . $codigo);
             exit();
-        }else{
-        echo $conn->error;
+        } else {
+            echo "Error al insertar: " . $conn->error;
         }
-}else{
-    header("Location: /QUINOVA.ORGmio/QUINOVA.ORG/portadas/crear.php");
-}
+    }else{
+        header("Location: /QUINOVA.ORGmio/QUINOVA.ORG/portadas/crear.php");
+    }
 
 ?>

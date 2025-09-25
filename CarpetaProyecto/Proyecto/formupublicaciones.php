@@ -35,12 +35,13 @@
     </style>
 </head>
 <body>
-    <form action="publicaciones.php" method="post">
+    <form action="publicaciones.php" method="post" enctype="multipart/form-data">
         <?echo $_SESSION['idClase'];?>
-
         <label for="">contenido</label>
         <input type="text" name="contenido"><br>
+        <input type="file" name="fileToUpload" id="" required><br>
         <input type="submit" value="Enviar">
+
    </form>
 
 </body>

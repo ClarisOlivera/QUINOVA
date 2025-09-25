@@ -10,16 +10,16 @@ $ci = $_SESSION['ci'];
 $nombre=$_SESSION['nombreCompleto'];
 
 // select
-$consulta = "SELECT id FROM clases where codigo = ".$codigoClase.";";
+$consulta = "SELECT id FROM clases where codigo = '".$codigoClase."';";
 $resultado = mysqli_query($conn,$consulta);
-
+echo $consulta;
 if(!empty($resultado) && mysqli_num_rows($resultado) > 0){
     $id = mysqli_fetch_assoc(($resultado));
     $valorId = $id['id'];
     $insert = "INSERT INTO registroclase (cuenta_User, clases_id) VALUES (". $ci .", ". $valorId. ");";
     
     if ($conn->query($insert)=== TRUE){
-        header("location:../portadas/materia.php?id=$codigoClase");
+        header("location:../portadas/materia.php?codigo=$codigoClase");
         exit();
     }else{
         echo "Error:" . $sql . "<br>" . $conn->error;

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table{
+        border:2px solid;
+        display: flex;
+        justify-content: center;
+        margin: 300px;
+        margin-top:0px;
+    }
+    #profe{
+        background:pink;
+        transition:all 0.5s;
+    }
+    #profe:hover{
+        background:purple;
+        color:white;
+        transform:scale(1.5);
+    }
+</style>
+<body>
+    <table>
+        <tr id="profe">
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Acciones</th>
+        </tr>
+        <tr>
+            <td>Carlos</td>
+            <td>Urquizu</td>
+            <td a href="">Ver/Eliminar</td>
+        </tr>
+        <tr>
+            <td>Karo</td>
+            <td>Rodriguez</td>
+            <td a href="">Ver/Eliminar</td>
+        </tr>
+        <tr>
+            <td>Dania</td>
+            <td>Lima</td>
+            <td a href="">Ver/Eliminar</td>
+        </tr>
+    </table>
+
+    <form method="GET" action="guardar.php">
+        <label>Nombre</label> <br>
+        <input type="text"> <br>
+        <label>Descripcion</label> <br>
+        <textarea>a</textarea> <br>
+        <input type="text"> 
+        <input type="submit">
+        <input type="reset">
+    </form>
+    <script>
+        $("form").validate(){
+            
+        }
+    </script>
+</body>
+</html>
